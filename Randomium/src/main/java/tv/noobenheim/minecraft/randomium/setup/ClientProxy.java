@@ -21,5 +21,4 @@ public class ClientProxy implements IProxy {
 	public PlayerEntity getClientPlayer() {
 		return Minecraft.getInstance().player;
 	}
-
 }
