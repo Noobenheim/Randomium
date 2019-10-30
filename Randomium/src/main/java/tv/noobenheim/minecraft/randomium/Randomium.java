@@ -36,7 +36,7 @@ public class Randomium {
 	public static ModSetup setup = new ModSetup();
 
     public Randomium() {
-    	ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_CONFIG);
+    	ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
     	
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
