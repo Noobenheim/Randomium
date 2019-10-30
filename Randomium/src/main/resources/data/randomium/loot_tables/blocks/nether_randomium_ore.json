@@ -3,7 +3,8 @@
 	"pools": [
 		{
 			"name": "randomium:nether_randomium_ore",
-			"rolls": 1
+			"rolls": 1,
+			"entries": []
 		}
 	]
 }
