@@ -125,14 +125,14 @@ public class Config {
 				.comment("Lowest Y that Randomium Ore can spawn in The End")
 				.defineInRange("randomiumOre.end.minY", 0, 0, 256);
 		RANDOMIUM_ORE_HIGHEST_Y_END = COMMON_BUILDER
-				.comment("Highest Y that Randomium Ore can spawn in The End",
+				.comment("Highest Y that Randomium Ore can spawn in The End")
+				.defineInRange("randomiumOre.end.maxY", 256, 0, 256);
+		RANDOMIUM_ORES_END_ORES = COMMON_BUILDER
+				.comment("Ores that are allowed in The End",
 						 "Format:",
 						 "    mod_id:ore:weight - if chosen, will drop one of those ores",
 						 "    mod_id:ore:weight:amount - if chosen, will drop that amount of ores",
 						 "    mod_id:ore:weight:min_amount:max_amount - if chosen, will drop an amount of ores between min_amount and max_amount")
-				.defineInRange("randomiumOre.end.maxY", 256, 0, 256);
-		RANDOMIUM_ORES_END_ORES = COMMON_BUILDER
-				.comment("Ores that are allowed in The End")
 				.defineList("randomiumOre.end.ores", Arrays.asList(defaultEndOres), o->o instanceof String);
 		
 		COMMON_BUILDER.pop();
