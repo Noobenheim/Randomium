@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"name": "randomium:nether_randomium_ore",
+			"rolls": 1
+		}
+	]
+}
