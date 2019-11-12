@@ -8,10 +8,8 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import tv.noobenheim.minecraft.randomium.common.blocks.ModBlocks;
 
 @Mod.EventBusSubscriber
 public class Config {
@@ -150,23 +148,7 @@ public class Config {
 	}
 	
 	public static void syncConfig() {
-		
+		// load modblock drops from config
+		ModBlocks.loadDropTables();
 	}
-	
-	@SubscribeEvent
-	public static void onConfigLoad(final ModConfig.Loading configEvent) {
-
-	}
-	
-	@SubscribeEvent
-	public static void onConfigReload(final ModConfig.ConfigReloading configEvent) {
-		
-	}
-	
-	@SubscribeEvent
-    public static void onConfigChanged(OnConfigChangedEvent event) {
-    	if( event.getModID().equals(Const.MOD_ID) ) {
-    		syncConfig();
-    	}
-    }
 }

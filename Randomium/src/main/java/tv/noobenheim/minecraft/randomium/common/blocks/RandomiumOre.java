@@ -11,8 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.ForgeRegistries;
 import tv.noobenheim.minecraft.randomium.Config;
@@ -74,9 +73,9 @@ public class RandomiumOre extends Block {
 			if( item == null ) {
 				continue;
 			}
-			double weight;
+			int weight;
 			try {
-				weight = Double.parseDouble(split[2]);
+				weight = Integer.parseInt(split[2]);
 				
 				int minAmount = 1;
 				if( split.length >= 4 ) {
@@ -93,25 +92,24 @@ public class RandomiumOre extends Block {
 		}
 	}
 	
-	public void addToDropTable(Item item, double weight, int minAmount, int maxAmount) {
+	public void addToDropTable(Item item, int weight, int minAmount, int maxAmount) {
 		this.dropTable.add(new ItemDrop(item, weight, minAmount, maxAmount));
 		this.totalWeight += weight;
 	}
 	
 	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		super.onReplaced(state, worldIn, pos, newState, isMoving);
-		
-		ItemDrop item = getRandomItem();
-		
-		if( item != null ) {
-			// get amount
-			int amount = item.getMinAmount();
-			if( amount != item.getMaxAmount() ) {
-				amount = random.nextInt(item.getMaxAmount()-item.getMinAmount())+item.getMinAmount();
+	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+		List<ItemStack> stack = new ArrayList<>();
+		ItemDrop drop = getRandomItem();
+		if( drop != null ) {
+			int amount = drop.getMinAmount();
+			if( amount != drop.getMaxAmount() ) {
+				amount = random.nextInt(drop.getMaxAmount()-drop.getMinAmount())+drop.getMinAmount();
 			}
-			spawnAsEntity(worldIn, pos, new ItemStack(item.getItem(), amount));
+			stack.add(new ItemStack(drop.getItem(), amount));
 		}
+		
+		return stack;
 	}
 	
 	public ItemDrop getRandomItem() {
@@ -131,13 +129,13 @@ public class RandomiumOre extends Block {
 		return null;
 	}
 	
-	class ItemDrop {
+	private class ItemDrop {
 		private Item item;
-		private double weight;
+		private int weight;
 		private int minAmount;
 		private int maxAmount;
 		
-		public ItemDrop(Item item, double weight, int minAmount, int maxAmount) {
+		public ItemDrop(Item item, int weight, int minAmount, int maxAmount) {
 			this.item = item;
 			this.weight = weight;
 			this.minAmount = minAmount;
@@ -148,7 +146,7 @@ public class RandomiumOre extends Block {
 			return item;
 		}
 
-		public double getWeight() {
+		public int getWeight() {
 			return weight;
 		}
 
