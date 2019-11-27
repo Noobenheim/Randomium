@@ -76,6 +76,9 @@ public class RandomiumOre extends Block {
 			int weight;
 			try {
 				weight = Integer.parseInt(split[2]);
+				if( weight < 0 ) {
+					continue;
+				}
 				
 				int minAmount = 1;
 				if( split.length >= 4 ) {
