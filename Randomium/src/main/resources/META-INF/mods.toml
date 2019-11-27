@@ -4,16 +4,16 @@ issueTrackerURL="https://github.com/Noobenheim/Randomium/issues/" #optional
 logoFile="Randomium.png" #optional
 [[mods]] #mandatory
 modId="randomium" #mandatory
-version="${file.jarVersion}" #mandatory
+version="1.1.1" #mandatory
 displayName="Randomium" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
 displayURL="https://github.com/Noobenheim/Randomium/" #optional
-#credits="" #optional
-authors="Zippy and Fiend" #optional
+credits="Fiend for being the best of friends" #optional
+authors="Zippy and Fiend for Noobenheim" #optional
 description='''
-Randomium is a rare ore found in the depths of the Minecraft world. It has the potential to drop any other ore in the game.
+Randomium is a rare ore found in the depths of the Minecraft world. It has the potential to drop any other ore (or item) in the game.
 
-At a very rare chance, it may even drop Randomium Ore which can be crafted into objects as a tier above Diamond.
+At a very rare chance, it may even drop Randomium Ore which can be crafted into objects as a tier above Diamond (not yet implemented).
 '''
 [[dependencies.randomium]] #optional
     # the modid of the dependency
